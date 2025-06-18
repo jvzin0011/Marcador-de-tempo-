@@ -1,97 +1,103 @@
-<!DOCTYPE html><html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>João Vitor & Julia Cruz</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Georgia', serif;
-    }body {
-  background: url('foto.jpg') no-repeat center center fixed;
-  background-size: cover;
-  height: 100vh;
-  color: white;
-  text-shadow: 1px 1px 4px #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  backdrop-filter: brightness(0.7);
-}
+      font-family: 'Playfair Display', serif;
+    }
 
-h1 {
-  font-size: 3em;
-  margin-bottom: 0.5em;
-  color: #b8ffb2;
-}
+    body {
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('foto.jpg') no-repeat center center fixed;
+      background-size: cover;
+      height: 100vh;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+    }
 
-#counter {
-  font-size: 2em;
-  margin-bottom: 1em;
-  background-color: rgba(0, 100, 0, 0.6);
-  padding: 10px 20px;
-  border-radius: 20px;
-}
+    h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: #b5ffcc;
+      text-shadow: 2px 2px 8px #000;
+    }
 
-#textinho {
-  max-width: 700px;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  border-radius: 15px;
-  font-size: 1.2em;
-  line-height: 1.6;
-}
+    #counter {
+      font-size: 2em;
+      background: rgba(0, 50, 0, 0.7);
+      padding: 15px 25px;
+      border-radius: 20px;
+      margin-bottom: 30px;
+      box-shadow: 0 0 10px #77ff99;
+    }
 
-iframe {
-  display: none; /* som ambiente */
-}
+    #textinho {
+      background: rgba(0,0,0,0.5);
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 700px;
+      font-size: 1.2em;
+      line-height: 1.6;
+      color: #eee;
+    }
 
+    iframe {
+      display: none;
+    }
   </style>
 </head>
 <body>
   <h1>João Vitor & Julia Cruz 💚</h1>
   <div id="counter"></div>
   <div id="textinho">
-    O tempo passou, e aqui estamos nós...<br />
-    Um ano, tantos dias e noites, tantos sonhos trocados.<br />
-    Como Tiana e Naveen, nem tudo foi conto de fadas,<br />
-    mas o amor cresceu nas pequenas coisas — no riso, na luta, na esperança.<br /><br />
     Julia, você é minha princesa, minha parceira, minha dança favorita sob as luzes de Nova Orleans.<br />
-    Nosso amor é real, é forte, é feito de alma e escolha.<br /><br />
-    A cada dia que passa, te amo mais.<br />
-    Obrigado por caminhar comigo.<br />
+    Como Tiana e Naveen, nosso amor floresce no brilho dos sonhos e no calor da esperança.<br /><br />
+    A cada segundo, eu te amo mais.<br />
+    Obrigado por viver essa linda história comigo.<br />
     Nosso tempo só está começando. 💖<br />
   </div>
-  <iframe width="0" height="0" src="https://www.youtube.com/embed/ejEVczA8PLU?autoplay=1&loop=1&playlist=ejEVczA8PLU" allow="autoplay"></iframe>  <script>
+  <iframe width="0" height="0" src="https://www.youtube.com/embed/HYvuZ4fWWVg?autoplay=1&loop=1&playlist=HYvuZ4fWWVg" allow="autoplay"></iframe>
+
+  <script>
     const startDate = new Date("2024-05-21T00:00:00");
 
     function updateCounter() {
       const now = new Date();
-      let years = now.getFullYear() - startDate.getFullYear();
-      let months = now.getMonth() - startDate.getMonth();
-      let days = now.getDate() - startDate.getDate();
+      let diff = Math.floor((now - startDate) / 1000);
 
-      if (days < 0) {
-        months--;
-        const previousMonth = new Date(now.getFullYear(), now.getMonth(), 0);
-        days += previousMonth.getDate();
-      }
+      const years = Math.floor(diff / (365.25 * 24 * 3600));
+      diff -= Math.floor(years * 365.25 * 24 * 3600);
+      const months = Math.floor(diff / (30.44 * 24 * 3600));
+      diff -= Math.floor(months * 30.44 * 24 * 3600);
+      const days = Math.floor(diff / (24 * 3600));
+      diff -= days * 24 * 3600;
+      const hours = Math.floor(diff / 3600);
+      diff %= 3600;
+      const minutes = Math.floor(diff / 60);
+      const seconds = diff % 60;
 
-      if (months < 0) {
-        years--;
-        months += 12;
-      }
-
-      const totalDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
-
-      document.getElementById("counter").textContent = `Estamos juntos há ${years} ano${years !== 1 ? 's' : ''}, ${months} mês${months !== 1 ? 'es' : ''}, ${days} dia${days !== 1 ? 's' : ''} — ou ${totalDays} dia${totalDays !== 1 ? 's' : ''} no total 💚`;
+      document.getElementById("counter").textContent =
+        `Estamos juntos há ${years} ano${years !== 1 ? 's' : ''}, ` +
+        `${months} mês${months !== 1 ? 'es' : ''}, ` +
+        `${days} dia${days !== 1 ? 's' : ''}, ` +
+        `${hours.toString().padStart(2, '0')}h ` +
+        `${minutes.toString().padStart(2, '0')}min ` +
+        `${seconds.toString().padStart(2, '0')}s 💚`;
     }
 
     updateCounter();
-    setInterval(updateCounter, 1000); // atualiza em tempo real
-  </script></body>
+    setInterval(updateCounter, 1000);
+  </script>
+</body>
 </html>
